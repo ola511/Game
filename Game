@@ -1,0 +1,125 @@
+var userName = prompt("What is your name?");
+alert("You have entered: " + userName);
+
+var userScores = 0;
+var computerScores = 0;
+
+
+function getValue()
+{
+    do {
+        var userChoice = prompt("Press 1 for Rock\nPress 2 for Paper\nPress 3 for scissors");
+
+        if (isNaN(userChoice)) {
+            alert("Text are not accpted, please try again with a number between (1-3).");
+            continue;
+        } else {
+            if (userChoice == 1) {
+                alert(userChoice = "rock");
+                return "rock";
+            } else if (userChoice == 2) {
+                alert(userChoice = "paper");
+                return "paper";
+            } else if (userChoice == 3) {
+                alert(userChoice = "scissors");
+                return "scissors";
+            } else {
+                alert("Invalid Choice, please try again with a number between (1-3).");
+            }
+        }
+    } while (true)
+}
+
+
+function getComputerChoice() {
+
+    var rand = (Math.floor(Math.random() * 3) + 1);
+
+    if (rand == 1) {
+        alert(computerChoice = "computer Choice rock");
+        return "rock";
+    } else if (rand == 2) {
+        alert(computerChoice = "computer Choice paper");
+        return "paper";
+    } else if (rand == 3) {
+        alert(computerChoice = "computer Choice scissors");
+        return "scissors";
+    }
+}
+
+
+
+
+function getWinner(user, computer) {
+
+    if (user == "rock" && computer == "scissors") {
+        alert(`${userName} wins`);
+        userScores++;
+        return `${userName} wins`;
+    } else if (computer == "rock" && user == "scissors") {
+        alert("computer wins");
+        computerScores++;
+        return "computer wins";
+    } else if (user == "paper" && computer == "rock") {
+        alert(`${userName} wins`);
+        userScores++;
+        return `${userName} wins`;
+    } else if (computer == "paper" && user == "rock") {
+        alert("computer wins");
+        computerScores++;
+        return "computer wins";
+    } else if (user == "scissors" && computer == "paper") {
+        alert(`${userName} wins`);
+        userScores++;
+        return `${userName} wins`; // userName + " wins"
+    } else if (computer == "scissors" && user == "paper") {
+        alert("computer wins"); 
+        computerScores++;
+        return "computer wins";
+    } else {
+        alert("The result is a tie!");
+         return "The result is a tie!";
+     }
+}
+
+
+function displayReport(winner, user, computer) {
+    if (winner == `${userName} wins`) {
+       document.write(`  Game Report:
+            ${userName} picked ${user}. Computer picked ${computer}
+            ${userName} wins.
+            ${userName}: ${userScores}
+            Computer: ${computerScores}  `);
+    } else if (winner == "computer wins") {
+        document.write(`  Game Report:
+            ${userName} picked ${user}. Computer picked ${computer}
+            Computer wins.
+            ${userName}: ${userScores}
+            Computer: ${computerScores}  `);
+    } else {
+        document.write(`  Game Report:
+            ${userName} picked ${user}. Computer picked ${computer}
+            It is a tie!
+            ${userName}: ${userScores}
+            Computer: ${computerScores}  `);
+    }
+}
+
+  
+
+
+
+
+function startGame() {
+    do {
+        var user = getValue();
+        var computer = getComputerChoice();
+        var winner = getWinner(user, computer);
+        displayReport(winner, user, computer);
+        var willingToContinue = confirm("Would you like to play again?");
+
+    } while (willingToContinue)
+}
+
+startGame();
+
